@@ -1,0 +1,23 @@
+<head>
+    <script src="/public/lib/jquery.min.js"></script>
+    <script src="/public/lib/bootstrap.min.js"></script>
+    <script src="/public/lib/socket.min.js"></script>
+    <script src="/public/client.js"></script>
+</head>
+
+<body>
+	<h1>Welcome, <%= username %></h1>
+	<div id="nav">
+	  <p><a href="/protected/editProfile">Edit Profile</a></p>
+	  <p><a href="/protected/whoIsAround">Check Which Neighbors Are Home</a></p>
+	  <p><a href="/protected/addNeighbor">Add Neighbor</a></p>
+	  <p><a href="/protected/contacts">Contacts</a></p>
+	  <p><a href="/protected/messages">Messages</a></p>
+	  
+	  <form method="post">
+	  	<p><input id="submission" value = "SOS" type="submit"></p>
+	  </form>
+	</div>
+	<a href="/logout">Logout</a>
+</body>
+
