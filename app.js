@@ -9,6 +9,7 @@ var protected = require('./routes/protected')
 var editProfile = require('./routes/editProfile')
 var addNeighbor = require('./routes/addNeighbor')
 var contacts = require('./routes/contacts')
+var contactsInfo = require('./routes/contactsInfo')
 var User = require('./middlewares/User')
 
 var http = require( "http" ).createServer( app );
@@ -60,6 +61,7 @@ app.use('/', protected);
 app.use('/protected', editProfile);
 app.use('/protected', addNeighbor);
 app.use('/protected', contacts);
+app.use('/protected/contacts', contactsInfo);
 
 //socket.io
 
