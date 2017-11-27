@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+	<head>
+		<script src="/lib/jquery.min.js"></script>
+	    <script src="/lib/bootstrap.min.js"></script>
+	    <script src="/lib/socket.min.js"></script>
+	    <script src="/addNeighborJS.js"></script>
+	</head>
+
+	<body>
+		<h1>Add Neighbor</h1>
+		<p>Search by Name<br>
+		<input type="text" name="username" id="input"></p>
+		<p><input id="button" type="submit" value="Find Neighbor"></p>
+
+		<div id="container"></div>
+		<div id="requests" data-username=<%= username %>></div>
+	</body>
+
+</html>

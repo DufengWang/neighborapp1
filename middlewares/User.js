@@ -6,7 +6,9 @@ var bcrypt = require('bcrypt');
 var userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  profile: { type: Array }
+  profile: { type: Schema.Types.Mixed },
+  request: { type: Array },
+  contacts: { type: Array }
 });
 
 userSchema.pre('save', function(next) {
@@ -16,7 +18,6 @@ userSchema.pre('save', function(next) {
 
   bcrypt.genSalt(10, function(err, salt) {
     if (err) return next(err);
-
     bcrypt.hash(user.password, salt, function(err, hash) {
       if (err) return next(err);
 
@@ -32,16 +33,51 @@ userSchema.statics.addUser = function(username, password, cb) {
 }
 
 userSchema.methods.editProfile = function(firstName, lastName, gender, homeAddress, hobbies, cb) {
-  this.profile = [firstName, lastName, gender, homeAddress, hobbies];
+  this.profile = {firstName: firstName, lastName: lastName, gender: gender, homeAddress: homeAddress, hobbies: hobbies};
 
-  console.log('test');
+  // console.log(this.username);
+  // console.log(this.profile);
 
-  console.log(this.profile[0]);
-  console.log(this.profile[1]);
-  console.log(this.profile[2]);
-  console.log(this.profile[3]);
+  this.save(cb);
+}
 
-  // this.save(cb);
+userSchema.methods.addRequest = function(username) {
+  if (!this.request.includes(username)) {
+    this.request.push(username);
+    console.log(this.username + ' added: ' + username);
+  } else {
+    console.log('it already exists');
+  }
+
+  // this.request = [];
+  // this.contacts = [];
+
+
+  this.save();
+}
+
+userSchema.methods.acceptRequest = function(username) {
+  if (!this.contacts.includes(username)) {
+    this.contacts.push(username);
+    console.log(this.username + ' has become a contact with ' + username);
+    console.log(this.contacts);
+
+    var index = this.request.indexOf(username);
+    this.request.splice(index, 1);
+  } else {
+    console.log('contact already exists');
+  }
+
+
+  this.save();
+}
+
+userSchema.methods.declineRequest = function(username) {
+
+  var index = this.request.indexOf(username);
+  this.request.splice(index, 1);
+
+  this.save();
 }
 
 userSchema.statics.checkIfLegit = function(username, password, cb) {

@@ -10,16 +10,18 @@ $(document).ready(function () {
   window.socket = io(window.socketURL);
 
   window.socket.on('connect', function () {
-    console.log('Connected to server!');
+    console.log('contacts page reached');
+
+    var currentUser = $('#container').data('username');
+    window.socket.emit('getContacts', currentUser);
   });
 
-  $('#submission').on('click', function() {
-    var username = $(this).data('username');
-    window.socket.emit('SOS', username);
-  })
+  window.socket.on('contactList', function(data) {
+    var html = '';
 
-  window.socket.on('userSOS', function (username) {
-    alert(username + ' needs help!!!');
+    for (var i = 0; i < data.length; i++) {
+      html = html + '<p>' + data[i] + '</p>';
+      $('#container').html(html);
+    }
   })
-
 });
