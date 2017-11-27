@@ -6,8 +6,8 @@ MVP Features:
  1. Login/Authentification
  2. Edit Profile
  3. Add Friends: send out request to specific user, accept/decline request, search if a user exists or not
- 4. Contacts: contingent on add friends
- 5. SOS Button: alert every one in the network
+ 4. Contacts: contingent on add friends, ability to view contacts' information
+ 5. SOS Button: alert every one in the network (when user is on the protected endpoint)
 
 Future Features:
  1. Live Chat Room
