@@ -2,6 +2,8 @@
 
 This is an app that helps neighbors connect with each other and has many auxiliary features.
 
+How to run it: mongod + npm start. Open browsers in both Incognito mode and normal mode, register new users, and all the MVP features listed below should work fine.
+
 MVP Features (Already Implemented):
  1. Login/Authentification
  2. Edit/Save Profile
