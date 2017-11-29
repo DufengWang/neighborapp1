@@ -1,6 +1,6 @@
 # neighborapp
 
-This is an app that helps neighbors connect with each other and has many auxiliary features.
+This is an app that helps neighbors connect with each other and utilizes each other as a safety net.
 
 How to run it: mongod + npm start. Open browsers in both Incognito mode and normal mode, register new users, and all the MVP features listed below should work fine.
 
